@@ -14,6 +14,7 @@
     "dockerComposeFile": "./docker-compose.yml",
     "service": "frappe",
     "workspaceFolder": "/home/frappe/frappe-bench",
+    "postCreateCommand": "bash apps/librarymanagement/.devcontainer/post_create.sh",
     "shutdownAction": "stopCompose",
     "extensions": [
       "ms-python.python",
