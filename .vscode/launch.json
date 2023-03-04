@@ -1,0 +1,166 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+      {
+        "name": "Bench Web",
+        "type": "python",
+        "request": "launch",
+        "program": "${workspaceFolder}/apps/frappe/frappe/utils/bench_helper.py",
+        "args": [
+          "frappe",
+          "serve",
+          "--port",
+          "8000",
+          "--noreload",
+          "--nothreading"
+        ],
+        "python": "${workspaceFolder}/env/bin/python",
+        "cwd": "${workspaceFolder}/sites",
+        "env": {
+          "DEV_SERVER": "1"
+        }
+      },
+      {
+        "name": "Bench Default Worker",
+        "type": "python",
+        "request": "launch",
+        "program": "${workspaceFolder}/apps/frappe/frappe/utils/bench_helper.py",
+        "args": ["frappe", "worker", "--queue", "default"],
+        "python": "${workspaceFolder}/env/bin/python",
+        "cwd": "${workspaceFolder}/sites",
+        "env": {
+          "DEV_SERVER": "1"
+        }
+      },
+      {
+        "name": "Bench Short Worker",
+        "type": "python",
+        "request": "launch",
+        "program": "${workspaceFolder}/apps/frappe/frappe/utils/bench_helper.py",
+        "args": ["frappe", "worker", "--queue", "short"],
+        "python": "${workspaceFolder}/env/bin/python",
+        "cwd": "${workspaceFolder}/sites",
+        "env": {
+          "DEV_SERVER": "1"
+        }
+      },
+      {
+        "name": "Bench Long Worker",
+        "type": "python",
+        "request": "launch",
+        "program": "${workspaceFolder}/apps/frappe/frappe/utils/bench_helper.py",
+        "args": ["frappe", "worker", "--queue", "long"],
+        "python": "${workspaceFolder}/env/bin/python",
+        "cwd": "${workspaceFolder}/sites",
+        "env": {
+          "DEV_SERVER": "1"
+        }
+      },
+      {
+        "name": "Honcho SocketIO Watch Schedule Worker",
+        "type": "python",
+        "request": "launch",
+        "program": "/home/frappe/.local/bin/honcho",
+        "python": "/home/frappe/.pyenv/shims/python",
+        "cwd": "${workspaceFolder}",
+        "console": "internalConsole",
+        "args": [
+          "start",
+          "socketio",
+          "watch",
+          "schedule",
+          "worker_short",
+          "worker_long",
+          "worker_default"
+        ]
+      },
+      {
+        "name": "Run All Tests",
+        "type": "python",
+        "request": "launch",
+        "program": "/home/frappe/.local/bin/bench",
+        "args": ["--site", "erp.localhost", "run-tests", "--app",  "librarymanagement"],
+        "python": "/home/frappe/.pyenv/shims/python",
+        "cwd": "${workspaceFolder}",
+        "env": {
+          "DEV_SERVER": "1"
+        }
+      },
+      {
+        "name": "Run Tests for DocType",
+        "type": "python",
+        "request": "launch",
+        "program": "/home/frappe/.local/bin/bench",
+        "args": ["--site", "erp.localhost", "run-tests", "--doctype",  "${input:docTypePrompt}"],
+        "python": "/home/frappe/.pyenv/shims/python",
+        "cwd": "${workspaceFolder}",
+        "justMyCode": false,
+        "env": {
+          "DEV_SERVER": "1"
+        }
+      },
+      {
+        "name": "Run a Specific Test for DocType",
+        "type": "python",
+        "request": "launch",
+        "program": "/home/frappe/.local/bin/bench",
+        "args": ["--site", "erp.localhost", "run-tests", "--doctype", "${input:docTypePrompt}", "--test", "${input:testPrompt}"],
+        "python": "/home/frappe/.pyenv/shims/python",
+        "cwd": "${workspaceFolder}",
+        "justMyCode": false,
+        "env": {
+          "DEV_SERVER": "1"
+        }
+      },
+      {
+        "name": "Run Tests for Module",
+        "type": "python",
+        "request": "launch",
+        "program": "/home/frappe/.local/bin/bench",
+        "args": ["--site", "erp.localhost", "run-tests", "--module",  "${input:modulePrompt}"],
+        "python": "/home/frappe/.pyenv/shims/python",
+        "cwd": "${workspaceFolder}",
+        "justMyCode": false,
+        "env": {
+          "DEV_SERVER": "1"
+        }
+      },
+      {
+        "name": "Run a Specific Test for Module",
+        "type": "python",
+        "request": "launch",
+        "program": "/home/frappe/.local/bin/bench",
+        "args": ["--site", "erp.localhost", "run-tests", "--module", "${input:modulePrompt}", "--test", "${input:testPrompt}"],
+        "python": "/home/frappe/.pyenv/shims/python",
+        "cwd": "${workspaceFolder}",
+        "justMyCode": false,
+        "env": {
+          "DEV_SERVER": "1"
+        }
+      }
+    ],
+    "inputs": [
+      {
+        "id": "docTypePrompt",
+        "description": "Please enter a doctype. e.g. Issue",
+        "default": "Issue",
+        "type": "promptString"
+      },
+      {
+        "id": "modulePrompt",
+        "description": "Please enter a module",
+        "default": "librarymanagement",
+        "type": "promptString"
+      },
+      {
+        "id": "testPrompt",
+        "description": "Please enter a test name",
+        "default": "test_librarymanagement",
+        "type": "promptString"
+      }
+    ]
+  }
+  

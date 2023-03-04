@@ -1,0 +1,13 @@
+{
+    "python.defaultInterpreterPath": "${workspaceFolder}/env/bin/python",
+    "python.testing.unittestArgs": [
+      "-v",
+      "-s",
+      "./apps/librarymanagement/librarymanagement",
+      "-p",
+      "test_*.py"
+    ],
+    "python.testing.pytestEnabled": false,
+    "python.testing.unittestEnabled": true,
+    "python.formatting.provider": "black"
+  }
