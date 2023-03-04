@@ -2,10 +2,6 @@
 
 set -ex
 
-PROJECT_DIR=~/frappe-bench/apps/librarymanagement
-
-cd $PROJECT_DIR
-
 bench new-site erp.localhost --mariadb-root-password 123 --admin-password 123 --no-mariadb-socket
 bench --site erp.localhost set-config developer_mode 1
 bench --site erp.localhost clear-cache
